@@ -11,13 +11,18 @@ def get_baseball():
     l_score = []
     l_team = []
     r_team = []
+    flag = []
 
     left_team_all = soup.find(id="cphContents_cphContents_cphContents_udpRecord").find_all("p", class_="leftTeam")
     right_team_all = soup.find(id="cphContents_cphContents_cphContents_udpRecord").find_all("p", class_="rightTeam")
+    flag_all = soup.find_all("strong",class_="flag")
 
     for l in left_team_all:
         l_score.append(l.find("em", class_="score").text)
         l_team.append(l.find("strong", class_="teamT").text)
+    
+    for f in flag_all:
+        flag.append(f.text)
 
     for r in right_team_all:
         r_score.append(r.find("em", class_="score").text)
@@ -26,7 +31,7 @@ def get_baseball():
     l = []
     total = 0
     while total < 5:
-        l.append(l_team[total] + " " + str(l_score[total])+" : "+ str(r_score[total])  + " "+ r_team[total] )
+        l.append(flag[total] + "    " + l_team[total] + " " + str(l_score[total])+" : "+ str(r_score[total])  + " "+ r_team[total] )
         total += 1
     msg = "\n".join(l)
     return msg
