@@ -30,7 +30,7 @@ def get_baseball():
 
     l = []
     total = 0
-    while total < 5:
+    while total < len(flag):
         l.append(flag[total] + "    " + l_team[total] + " " + str(l_score[total])+" : "+ str(r_score[total])  + " "+ r_team[total] )
         total += 1
     msg = "\n".join(l)
