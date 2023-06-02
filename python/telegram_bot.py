@@ -11,6 +11,7 @@ import logging, os
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, ContextTypes
 import baseball_score
+import football_score
 
 TOKEN = os.environ['TOKEN']
 
@@ -21,21 +22,26 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def baseball(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = baseball_score.get_baseball()
     await update.message.reply_text(msg)
 
+async def football(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    msg = football_score.get_football()
+    await update.message.reply_text(msg)
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Displays info on how to use the bot."""
-    await update.message.reply_text("Use /start to test this bot.")
+    await update.message.reply_text("/baseball /football")
 
 def main() -> None:
     """Run the bot."""
     # Create the Application and pass it your bot's token.
     application = Application.builder().token(TOKEN).build()
 
-    application.add_handler(CommandHandler("baseball", start))
+    application.add_handler(CommandHandler("baseball", baseball))
+    application.add_handler(CommandHandler("football", football))
+
     application.add_handler(CommandHandler("help", help_command))
 
     # Run the bot until the user presses Ctrl-C
