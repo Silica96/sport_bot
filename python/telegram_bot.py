@@ -24,8 +24,6 @@ logger = logging.getLogger(__name__)
 
 async def baseball(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     msg = baseball_score.get_baseball()
-    if msg == None:
-        msg = "오늘 경기가 없습니다."
     await update.message.reply_text(msg)
 
 async def football(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

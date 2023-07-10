@@ -33,5 +33,8 @@ def get_baseball():
     while total < len(flag):
         l.append(flag[total] + "    " + l_team[total] + " " + str(l_score[total])+" : "+ str(r_score[total])  + " "+ r_team[total] )
         total += 1
-    msg = "\n".join(l)
+    if len(l) == 0:
+        msg = "오늘 경기가 없습니다"
+    else:
+        msg = "\n".join(l)
     return msg
