@@ -2,7 +2,7 @@ import requests, json
 from datetime import date
 
 def get_volleyball():
-    URL = "https://api-gw.sports.naver.com/schedule/games?fields=basic,superCategoryId,categoryName,stadium,statusNum,gameOnAir,hasVideo,title,specialMatchInfo,roundCode,seriesOutcome,seriesGameNo,round,groupName&superCategoryId=volleyball&fromDate="+date.today().strftime('%Y-%m-%d')+"&toDate="+date.today().strftime('%Y-%m-%d')+"2&size=500"
+    URL = "https://api-gw.sports.naver.com/schedule/games?fields=basic,superCategoryId,categoryName,stadium,statusNum,gameOnAir,hasVideo,title,specialMatchInfo,roundCode,seriesOutcome,seriesGameNo,round,groupName&superCategoryId=volleyball&fromDate="+date.today().strftime('%Y-%m-%d')+"&toDate="+date.today().strftime('%Y-%m-%d')+"&size=500"
     # URL = "https://api-gw.sports.naver.com/schedule/games?fields=basic,superCategoryId,categoryName,stadium,statusNum,gameOnAir,hasVideo,title,specialMatchInfo,roundCode,seriesOutcome,seriesGameNo,round,groupName&superCategoryId=volleyball&fromDate=2023-10-15&toDate=2023-10-15&size=500"
 
     print(URL)
@@ -23,7 +23,7 @@ def get_volleyball():
                 away_team_list.append(score['awayTeamName'])
                 home_team_score.append(str(score['homeTeamScore']))
                 away_team_score.append(str(score['awayTeamScore']))
-                game_status.append(score['winner'])
+                game_status.append(score['statusInfo'])
 
         l = []
         total = 0
