@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from team_utils import translate_team_name
 import requests
 
 def get_baseball():
@@ -31,7 +32,7 @@ def get_baseball():
     l = []
     total = 0
     while total < len(flag):
-        l.append(flag[total] + "    " + l_team[total] + " " + str(l_score[total])+" : "+ str(r_score[total])  + " "+ r_team[total] )
+        l.append(flag[total] + "    " + translate_team_name(l_team[total]) + " " + str(l_score[total])+" : "+ str(r_score[total])  + " " + translate_team_name(r_team[total]) )
         total += 1
     if len(l) == 0:
         msg = "오늘 경기가 없습니다"

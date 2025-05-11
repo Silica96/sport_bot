@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from team_utils import translate_team_name
 
 
 def fetch_kfootball_team_stats():
@@ -29,7 +30,7 @@ def fetch_kfootball_team_stats():
             fouls = cells[10].text.strip()  # 파울 수
 
             team_scores[team_name] = (
-                f"{team_name} (승점: {points}, {wins}승, {draws}무, {losses}패)"
+                f"{translate_team_name(team_name)} (승점: {points}, {wins}승, {draws}무, {losses}패)"
             )
 
     # 결과를 문자열로 정리하여 반환
