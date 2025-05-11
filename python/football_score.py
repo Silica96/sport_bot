@@ -1,6 +1,7 @@
 # https://sports.news.naver.com/kfootball/schedule/scoreboard?year=2023&month=06&category=kleague&date=20230603
 import requests, json
 from datetime import date
+from team_utils import translate_team_name
 
 def get_football():
     URL = "https://sports.news.naver.com/kfootball/schedule/scoreboard?year="+date.today().strftime('%Y')+"&month="+date.today().strftime('%m')+"&category=kleague&date="+date.today().strftime('%Y%m%d')
@@ -26,7 +27,7 @@ def get_football():
         l = []
         total = 0
         while total < len(score_json['scoreboardList']):
-            l.append(game_status[total] + "    " + home_team_list[total] + " " + home_team_score[total]+" : "+ away_team_score[total] + " "+ away_team_list[total] )
+            l.append(game_status[total] + "    " + translate_team_name(home_team_list[total]) + " " + home_team_score[total]+" : "+ away_team_score[total] + " " + translate_team_name(away_team_list[total]))
             total += 1
         msg = "\n".join(l)
         return msg

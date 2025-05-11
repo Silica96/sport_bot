@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from team_utils import translate_team_name
 
 
 def fetch_kbo_team_stats_single_line():
@@ -47,7 +48,7 @@ def fetch_kbo_team_stats_single_line():
             "Last 10 Games": last_ten,
         }
         team_scores[team_name] = (
-            f" {team_name} ({wins}승, {draws}무, {losses}패, {game_difference})"
+            f" {translate_team_name(team_name)} ({wins}승, {draws}무, {losses}패, {game_difference})"
         )
 
     # 결과를 문자열로 정리하여 반환
@@ -56,3 +57,11 @@ def fetch_kbo_team_stats_single_line():
         result_string += f"{data}\n"
 
     return result_string
+
+
+def translate_team_name(team_name):
+
+    if team_name == "LG":
+        return "🖤서울의 자존심 LG 트윈스❤️"
+
+    return team_name
